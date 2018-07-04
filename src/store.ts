@@ -31,7 +31,8 @@ export default new Vuex.Store({
             context.commit("deal_adve" , { data: adAPI });
         },
         get_chap( context , payload ) {
-            context.commit("deal_chap" , { data: chapterAPI });
+            const res = chapterAPI( payload.id );
+            context.commit("deal_chap" , { data: res });
         },
     },
 });

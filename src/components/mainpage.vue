@@ -42,6 +42,12 @@
         <adv v-bind:api="adve.center" />
         <article id="chapters">
             <h2> All Chapters </h2>
+            <section>
+                <p v-for="(e) in chap" v-bind:key="e.id">
+                    {{ e.title }}
+                    <span v-if="e.latest">NEW</span>
+                </p>
+            </section>
         </article>
         <adv v-bind:api="adve.footer" />
     </main>
@@ -59,7 +65,7 @@ export default Vue.extend({
     mounted() {
         this.get_data();
         this.get_adve();
-        this.get_chap();
+        this.get_chap({ id: this.info.id });
     },
     methods: {
         ...mapActions([
@@ -77,7 +83,7 @@ export default Vue.extend({
     },
     components: {
         adv: Advertisement,
-    }
+    },
 });
 </script>
 
@@ -126,6 +132,29 @@ main
     #chapters
     {
         margin-top: 1rem;
+        h2
+        {
+            color: #FFFFFF;
+            background-color: #000000;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            display: inline-block;
+        }
+        section
+        {
+            padding: 1rem;
+            border: 4px solid #000000;
+            font-weight: 900;
+            p
+            {
+                &:not( :last-child ){ margin-bottom: 1rem; }
+                span
+                {
+                    background: #50FF44;
+                    margin-left: 1rem;
+                    padding: 2px 12px 2px 12px;
+                }
+            }
+        }
     }
 }
 </style>
