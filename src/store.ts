@@ -16,10 +16,10 @@ export default new Vuex.Store({
         deal_data( state , payload ) {
             state.comic_info = payload.data;
         },
-        deal_adv( state , payload ) {
+        deal_adve( state , payload ) {
             state.adver_info = payload.data;
         },
-        deal_chapters( state , payload ) {
+        deal_chap( state , payload ) {
             state.chapt_info = payload.data;
         },
     },
@@ -27,11 +27,11 @@ export default new Vuex.Store({
         get_data( context ) {
             context.commit("deal_data" , { data: comicAPI });
         },
-        get_adv( context ) {
-            context.commit("deal_adv" , { data: adAPI });
+        get_adve( context ) {
+            context.commit("deal_adve" , { data: adAPI });
         },
-        get_chapters( context , payload ) {
-            context.commit("deal_adv" , { data: chapterAPI });
+        get_chap( context , payload ) {
+            context.commit("deal_chap" , { data: chapterAPI });
         },
     },
 });

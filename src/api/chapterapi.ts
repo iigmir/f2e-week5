@@ -1,11 +1,11 @@
-interface ADAPI {
+interface ChaptAPI {
     id: number;
     latest: boolean;
     title: string;
 }
 
 export default function( input: number ) {
-    const first: ADAPI[] = [{
+    const first: ChaptAPI[] = [{
         id: 1,
         latest: false,
         title: "Chapter 1: The F2E Challenge Start!",
@@ -15,7 +15,7 @@ export default function( input: number ) {
         latest: true,
         title: "Chapter 2: Todo List is Going Crazy!",
     }];
-    const second: ADAPI[] = [{
+    const second: ChaptAPI[] = [{
         id: 1,
         latest: false,
         title: "退屈",

@@ -1,5 +1,5 @@
 <template>
-    <div class="adv">
+    <div class="adv" v-if="api">
         <a v-bind:href="api.url" target="_blank">
             <img v-bind:src="api.img" alt="Advertisment" />
         </a>
@@ -10,7 +10,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component export default class Advertisement extends Vue {
-    @Prop() private api!: string;
+    @Prop() private api!: object;
 }
 </script>
 

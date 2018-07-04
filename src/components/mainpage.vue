@@ -58,18 +58,21 @@ export default Vue.extend({
     },
     mounted() {
         this.get_data();
-        this.get_adv();
+        this.get_adve();
+        this.get_chap();
     },
     methods: {
         ...mapActions([
             "get_data",
-            "get_adv"
+            "get_adve",
+            "get_chap",
         ]),
     },
     computed: {
         ...mapState({
             info: ( state ) => state.comic_info,
-            adve:  ( state ) => state.adver_info
+            adve: ( state ) => state.adver_info,
+            chap: ( state ) => state.chapt_info,
         }),
     },
     components: {
