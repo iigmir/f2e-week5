@@ -17,5 +17,10 @@ export default new Router({
             name: "about",
             component: About,
         },
+        {
+            path: "/comic/:comicid/:chapid?",
+            name: "home",
+            component: Home,
+        },
     ],
 });

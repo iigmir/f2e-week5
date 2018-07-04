@@ -63,7 +63,7 @@ export default Vue.extend({
         return {};
     },
     mounted() {
-        this.get_data();
+        this.get_data({ id: 1 });
         this.get_adve();
         this.get_chap({ id: this.info.id });
     },

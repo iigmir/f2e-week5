@@ -24,8 +24,9 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        get_data( context ) {
-            context.commit("deal_data" , { data: comicAPI });
+        get_data( context , payload ) {
+            const res = comicAPI( payload.id );
+            context.commit("deal_data" , { data: res });
         },
         get_adve( context ) {
             context.commit("deal_adve" , { data: adAPI });
