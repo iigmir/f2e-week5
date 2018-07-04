@@ -3,7 +3,7 @@
         <adv v-bind:api="adve.header" />
         <div id="main-container">
             <aside>
-                <img :src="info.cover_api" />
+                <img v-bind:src="info.cover" alt="Cover" />
             </aside>
             <article>
                 <hgroup>
@@ -40,8 +40,9 @@
             </article>
         </div>
         <adv v-bind:api="adve.center" />
-        <div id="chapters">
-        </div>
+        <article id="chapters">
+            <h2> All Chapters </h2>
+        </article>
         <adv v-bind:api="adve.footer" />
     </main>
 </template>
