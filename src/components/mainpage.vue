@@ -44,7 +44,13 @@
             <h2> All Chapters </h2>
             <section>
                 <p v-for="(e) in chap" v-bind:key="e.id">
-                    {{ e.title }}
+                    <router-link :to="{
+                        name: 'comic',
+                        params: {
+                            comicid: info.id ,
+                            chapid: e.id
+                        }
+                    }"> {{ e.title }} </router-link>
                     <span v-if="e.latest">NEW</span>
                 </p>
             </section>
@@ -147,6 +153,11 @@ main
             p
             {
                 &:not( :last-child ){ margin-bottom: 1rem; }
+                a,a:visited
+                {
+                    color: #000000;
+                    text-decoration: none;
+                }
                 span
                 {
                     background: #50FF44;
