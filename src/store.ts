@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import comicAPI from "@/api/comicapi";
 import adAPI from "@/api/adapi";
 import chapterAPI from "@/api/chapterapi";
+import comicchapterAPI from "@/api/comicchapterapi";
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
         comic_info: {},
         adver_info: {},
         chapt_info: [],
+        comic_page: [],
     },
     mutations: {
         deal_data( state , payload ) {
@@ -21,6 +23,12 @@ export default new Vuex.Store({
         },
         deal_chap( state , payload ) {
             state.chapt_info = payload.data;
+        },
+        read_comic( state , payload ) {
+            state.comic_page = payload.data;
+        },
+        clear_comic( state ) {
+            state.comic_page = [];
         },
     },
     actions: {
@@ -34,6 +42,9 @@ export default new Vuex.Store({
         get_chap( context , payload ) {
             const res = chapterAPI( payload.id );
             context.commit("deal_chap" , { data: res });
+        },
+        get_comic( context , payload ) {
+            context.commit("read_comic" , { data: comicchapterAPI[payload.comicid][payload.chapterid] });
         },
     },
 });

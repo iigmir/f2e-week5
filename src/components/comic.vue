@@ -4,23 +4,23 @@
             <div class="left">
                 <h2> {{ info.title }} </h2>
                 <i class="fas fa-caret-right"></i>
-                <select id="pet-select">
-                    <option value="none" selected>--Please choose an option--</option>
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
-                    <option value="hamster">Hamster</option>
-                    <option value="parrot">Parrot</option>
-                    <option value="spider">Spider</option>
-                    <option value="goldfish">Goldfish</option>
+                <select id="current-chapter">
+                    <option
+                        v-for="(el,id) in chap"
+                        v-bind:key="id"
+                        v-bind:value="el.id"
+                    >
+                     Chapter {{ el.id }}
+                    </option>
                 </select>
-                <select id="pet-select2">
-                    <option value="none" selected>--Please choose an option--</option>
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
-                    <option value="hamster">Hamster</option>
-                    <option value="parrot">Parrot</option>
-                    <option value="spider">Spider</option>
-                    <option value="goldfish">Goldfish</option>
+                <select id="current-page">
+                    <option
+                        v-for="(el,id) in page"
+                        v-bind:key="id"
+                        v-bind:value="id"
+                    >
+                     Page {{ id + 1 }}
+                    </option>
                 </select>
             </div>
             <div class="right">
@@ -49,15 +49,26 @@ export default Vue.extend({
         };
     },
     mounted() {
-        this.get_data({ id: 1 });
-        this.get_adve();
-        this.get_chap({ id: this.info.id });
+        if( Object.keys( this.info ).length < 1 && this.info.constructor === Object ) {
+            this.get_data({ id:this.$route.params.comicid });
+        }
+        if( Object.keys( this.adve ).length < 1 && this.adve.constructor === Object ) {
+            this.get_adve();
+        }
+        if( this.chap.length < 1 ) {
+            this.get_chap({ id: this.$route.params.chapid });
+        }
+        this.get_comic({
+            comicid:this.$route.params.comicid ,
+            chapterid:this.$route.params.chapid
+        });
     },
     methods: {
         ...mapActions([
             "get_data",
             "get_adve",
             "get_chap",
+            "get_comic"
         ]),
     },
     computed: {
@@ -65,6 +76,7 @@ export default Vue.extend({
             info: ( state ) => state.comic_info,
             adve: ( state ) => state.adver_info,
             chap: ( state ) => state.chapt_info,
+            page: ( state ) => state.comic_page,
         }),
     },
 });
