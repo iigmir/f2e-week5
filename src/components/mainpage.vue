@@ -43,16 +43,16 @@
         <article id="chapters">
             <h2> All Chapters </h2>
             <section>
-                <p v-for="(e) in chap" v-bind:key="e.id">
-                    <router-link :to="{
+                <router-link v-for="(e) in chap" v-bind:key="e.id" tag="p" :to="{
                         name: 'comic',
                         params: {
                             comicid: info.id ,
                             chapid: e.id
                         }
-                    }"> {{ e.title }} </router-link>
+                }">
+                    {{ e.title }}
                     <span v-if="e.latest">NEW</span>
-                </p>
+                </router-link>
             </section>
         </article>
         <adv v-bind:api="adve.footer" />
@@ -147,16 +147,18 @@ main
         }
         section
         {
-            padding: 1rem;
+            padding: 10px 0 10px 0;
             border: 4px solid #000000;
             font-weight: 900;
             p
             {
-                &:not( :last-child ){ margin-bottom: 1rem; }
-                a,a:visited
+                padding: 1rem;
+                cursor: pointer;
+                color: #000000;
+                &:hover
                 {
-                    color: #000000;
-                    text-decoration: none;
+                    background: #000000;
+                    color: #FFFFFF;
                 }
                 span
                 {
