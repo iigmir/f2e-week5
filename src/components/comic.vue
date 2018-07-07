@@ -93,7 +93,7 @@ export default Vue.extend({
             "switch_dark"
         ]),
         switch_chap() {
-            let the_route = {
+            let the_route: object = {
                 name: 'comic',
                 params: {
                     comicid: this.$route.params.comicid,
