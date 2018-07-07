@@ -108,7 +108,7 @@ export default Vue.extend({
             this.current_page_index = 0;
         },
         switch_page( input_number: number ) {
-            let switch_to = 0;
+            let switch_to: number = 0;
             let page_in_future = this.current_page_index + input_number;
             if( page_in_future <= 0 ) {
                 switch_to = 0;
@@ -122,11 +122,11 @@ export default Vue.extend({
     },
     computed: {
         ...mapState({
-            info: ( state ) => state.comic_info,
-            adve: ( state ) => state.adver_info,
-            chap: ( state ) => state.chapt_info,
-            page: ( state ) => state.comic_page,
-            dark: ( state ) => state.dark_mode,
+            info: ( state: any ) => state.comic_info,
+            adve: ( state: any ) => state.adver_info,
+            chap: ( state: any ) => state.chapt_info,
+            page: ( state: any ) => state.comic_page,
+            dark: ( state: any ) => state.dark_mode,
         }),
     },
 });
