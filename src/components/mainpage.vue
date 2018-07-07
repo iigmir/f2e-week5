@@ -82,9 +82,9 @@ export default Vue.extend({
     },
     computed: {
         ...mapState({
-            info: ( state:any ) => state.comic_info,
-            adve: ( state:any ) => state.adver_info,
-            chap: ( state:any ) => state.chapt_info,
+            info: ( state: any ) => state.comic_info,
+            adve: ( state: any ) => state.adver_info,
+            chap: ( state: any ) => state.chapt_info,
         }),
     },
     components: {
