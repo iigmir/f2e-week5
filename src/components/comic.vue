@@ -30,7 +30,9 @@
                 <label>
                     <input type="checkbox" v-model="dark_mode">
                     <i class="fas fa-sun"></i>
-                    <span>s</span>
+                    <span class="switch">
+                        <span class="btn"></span>
+                    </span>
                     <i class="fas fa-moon"></i>
                 </label>
             </div>
@@ -38,10 +40,10 @@
         <article>
             <h2 hidden> Content of {{ info.title }} </h2>
             <img v-bind:src="page[current_page_index]" v-bind:alt="info.title" />
-            <div class="goto prev 2x" v-on:click="switch_page( -1 )">
+            <div class="goto prev fa-3x" v-on:click="switch_page( -1 )">
                 <i class="fas fa-chevron-left"></i>
             </div>
-            <div class="goto next 2x" v-on:click="switch_page( 1 )">
+            <div class="goto next fa-3x" v-on:click="switch_page( 1 )">
                 <i class="fas fa-chevron-right"></i>
             </div>
         </article>
@@ -60,6 +62,11 @@ export default Vue.extend({
             current_chapter: 0,
             current_page_index: 0,
         };
+    },
+    watch: {
+        dark_mode( newval ) {
+            this.switch_dark({ dark_mode : newval });
+        }
     },
     mounted() {
         if( Object.keys( this.info ).length < 1 && this.info.constructor === Object ) {
@@ -82,7 +89,8 @@ export default Vue.extend({
             "get_data",
             "get_adve",
             "get_chap",
-            "get_comic"
+            "get_comic",
+            "switch_dark"
         ]),
         switch_chap() {
             let the_route = {
@@ -118,6 +126,7 @@ export default Vue.extend({
             adve: ( state ) => state.adver_info,
             chap: ( state ) => state.chapt_info,
             page: ( state ) => state.comic_page,
+            dark: ( state ) => state.dark_mode,
         }),
     },
 });
@@ -132,6 +141,30 @@ export default Vue.extend({
         display: flex;
         * { margin-right: 5px; }
         i { padding-top: 5px }
+    }
+    .right
+    {
+        label
+        {
+            input{ display: none; }
+            & > * { margin-right: 8px; }
+            .switch
+            {
+                display: inline-block;
+                width: 48px;
+                height: 16px;
+                margin-bottom: -6px;
+                padding: 2px;
+                border: #000000 2px solid;
+                .btn
+                {
+                    display: block;
+                    width: 50%;
+                    height: 100%;
+                    background-color: #000000;
+                }
+            }
+        }
     }
 }
 article
@@ -155,5 +188,25 @@ article
         }
     }
     img{ max-width: 100%; }
+}
+
+.dark
+{   // Dark mode
+    background-color: #000000;
+    color: #FFFFFF;
+    .panel .right label .switch
+    {
+        border: #FFFFFF 2px solid;
+        .btn
+        {
+            margin-left: 50%;
+            background-color: #FFFFFF;
+        }
+    }
+    article .goto:hover
+    {
+        background: #50FF44;
+        color: #000000;
+    }
 }
 </style>

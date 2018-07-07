@@ -13,6 +13,7 @@ export default new Vuex.Store({
         adver_info: {},
         chapt_info: [],
         comic_page: [],
+        dark_mode: false,
     },
     mutations: {
         deal_data( state , payload ) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
         clear_comic( state ) {
             state.comic_page = [];
         },
+        switch_dark( state , payload ) {
+            state.dark_mode = payload.data;
+        },
     },
     actions: {
         get_data( context , payload ) {
@@ -45,6 +49,9 @@ export default new Vuex.Store({
         },
         get_comic( context , payload ) {
             context.commit("read_comic" , { data: comicchapterAPI[payload.comicid][payload.chapterid] });
+        },
+        switch_dark( context , payload ) {
+            context.commit("switch_dark" , { data: payload.dark_mode });
         },
     },
 });

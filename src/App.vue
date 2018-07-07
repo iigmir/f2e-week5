@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" v-bind:class="{ dark : $store.state.dark_mode }" >
         <nav>
             <router-link tag="h1" to="/">Comicomic</router-link>
         </nav>
